@@ -8,26 +8,26 @@ advert_router = APIRouter(prefix="/v1/adverts", tags=["Объявления"])
 
 
 @advert_router.get("/")
-def get_all_adverts():
-    get_all_adverts_from_db()
+async def get_all_adverts():
+    return await get_all_adverts_from_db()
 
 
 @advert_router.get("/{id}")
-def get_advert(id):
-    get_one_advert_from_db(id)
+async def get_advert(id):
+    return await get_one_advert_from_db(id)
 
 
 @advert_router.post("/")
-def add_advert(
+async def add_advert(
     request: Request,
     advert: Advert,
 ):
-    save_advert(advert, request.user)
+    await save_advert(advert)
 
 
 @advert_router.patch("/{id}")
-def edit_advert(
+async def edit_advert(
     id: uuid.UUID,
     advert: EditAdvert
 ):
-    edit_advert(id, advert)
+    await edit_advert(id, advert)

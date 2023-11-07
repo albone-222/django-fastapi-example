@@ -21,7 +21,7 @@ async def get_one_advert_from_db(id: uuid.UUID):
 
 async def save_advert(advert: Advert):
     async with SessionLocal() as session:
-        advert = Adverts(advert, user)
+        advert = Adverts(advert)
         session.add(advert)
         await session.commit()
     return advert
